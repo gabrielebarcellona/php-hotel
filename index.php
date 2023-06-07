@@ -56,7 +56,12 @@ $hotels = [
 <body>
 
     <h1>lista di hotel</h1>
-
+    <ul>
+        <?php foreach ($hotels as $hotel) { ?>
+            <li>
+                <?php $hotel ?>
+            </li> <?php } ?>
+    </ul>
 
 </body>
 
