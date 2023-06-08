@@ -37,7 +37,21 @@ $hotels = [
         'distance_to_center' => 50
     ],
 
-]; ?>
+];
+
+$parking = isset($_GET['parking']);
+if ($parking) {
+    $arr_parking = [];
+
+    foreach ($hotels as $hotel) {
+        if ($hotel['parking']) {
+            $arr_parking[]  = $hotel;
+        }
+    }
+
+    $hotel = $arr_parking;
+}
+?>
 
 
 
@@ -56,6 +70,19 @@ $hotels = [
 <body>
 
     <h1>lista di hotel</h1>
+    <form action="" method="get">
+        <div class="form-check">
+            <input class="form-check-input m-3" type="checkbox" id="parking" name="parking" <?= $parking ? 'checked' : '' ?>>
+            <label class="form-check-label m-2" for="parking">
+                parking
+            </label>
+        </div>
+
+        <button type="submit" class="m-3 btn btn-primary">sumbit</button>
+        <button type="reset" class="m-3 btn btn-primary">reset</button>
+
+
+    </form>
     <ul>
         <table class="table">
             <thead>
@@ -64,11 +91,11 @@ $hotels = [
                     <th scope="col">description</th>
                     <th scope="col">parking</th>
                     <th scope="col">vote</th>
-                    <th scope="col">distance to center</th>
+                    <th scope="col">distance to center km</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($hotels as $hotel) { ?>
+                <?php foreach ($arr_parking as $hotel) { ?>
                     <tr>
                         <th scope="row"> <?php echo $hotel['name'] ?></th>
                         <td> <?php echo $hotel['description'] ?></td>
